@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.25920.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitIFcExport", "RevitIFcExport\RevitIFcExport.csproj", "{3C0E76EC-48E0-419B-A1DB-4BB20F50C76B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RevitIfcExport", "RevitIfcExport\RevitIfcExport.csproj", "{3C0E76EC-48E0-419B-A1DB-4BB20F50C76B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
