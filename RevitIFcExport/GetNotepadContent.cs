@@ -12,7 +12,7 @@ namespace RevitIFcExport
 
             while (string.IsNullOrEmpty(resultString))
             {
-                var list = getAllRunningNotepadInstanceText();
+                var list = GetAllRunningNotepadInstanceText();
                 foreach (var InstanceText in list)
                 {
                     if (InstanceText.Contains(containsString))
@@ -38,7 +38,7 @@ namespace RevitIFcExport
         [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, StringBuilder lParam);
 
-        private List<string> getAllRunningNotepadInstanceText()
+        private List<string> GetAllRunningNotepadInstanceText()
         {
             var notepadTextList = new List<string>();
 
