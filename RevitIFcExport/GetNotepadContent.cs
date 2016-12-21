@@ -12,14 +12,7 @@ namespace RevitIFcExport
 
             while (string.IsNullOrEmpty(resultString))
             {
-                var list = GetAllRunningNotepadInstanceText();
-                foreach (var InstanceText in list)
-                {
-                    if (InstanceText.Contains(containsString))
-                    {
-                        resultString = InstanceText;
-                    }
-                }
+                resultString = GetAllRunningNotepadInstanceText(containsString);
             }
 
             return resultString;
@@ -38,18 +31,25 @@ namespace RevitIFcExport
         [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, StringBuilder lParam);
 
-        private List<string> GetAllRunningNotepadInstanceText()
+        private string GetAllRunningNotepadInstanceText(string containsString)
         {
-            var notepadTextList = new List<string>();
-
+            var notepadText = string.Empty;
             System.Diagnostics.Process[] ps = System.Diagnostics.Process.GetProcessesByName("notepad");
             foreach (System.Diagnostics.Process p in ps)
             {
                 IntPtr editWnd = FindWindowEx(p.MainWindowHandle, IntPtr.Zero, "Edit", "");
-                notepadTextList.Add(GetText(editWnd));
+                notepadText =  GetText(editWnd);
+                if (notepadText.Contains(containsString))
+                {
+                    p.Kill();
+                }
+                else
+                {
+                    notepadText = string.Empty;
+                }
             }
 
-            return notepadTextList;
+            return notepadText;
         }
 
         private string GetText(IntPtr hWnd)
