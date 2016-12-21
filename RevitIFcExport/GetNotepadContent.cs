@@ -6,19 +6,6 @@ namespace RevitIFcExport
 {
     public class GetNotepadContent
     {
-        public string GetNotePadContent_Contains(string containsString)
-        {
-            var resultString = string.Empty;
-
-            while (string.IsNullOrEmpty(resultString))
-            {
-                resultString = GetAllRunningNotepadInstanceText(containsString);
-            }
-
-            return resultString;
-        }
-
-
         private const int WM_GETTEXT = 0xd;
         private const int WM_GETTEXTLENGTH = 0xe;
 
@@ -30,6 +17,20 @@ namespace RevitIFcExport
 
         [System.Runtime.InteropServices.DllImport("user32.dll", CharSet = System.Runtime.InteropServices.CharSet.Auto)]
         static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, StringBuilder lParam);
+
+
+
+        public string GetNotePadContent_Contains(string containsString)
+        {
+            var resultString = string.Empty;
+
+            while (string.IsNullOrEmpty(resultString))
+            {
+                resultString = GetAllRunningNotepadInstanceText(containsString);
+            }
+
+            return resultString;
+        }
 
         private string GetAllRunningNotepadInstanceText(string containsString)
         {
