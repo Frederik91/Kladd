@@ -46,7 +46,7 @@ namespace RevitIFcExport
             foreach (System.Diagnostics.Process p in ps)
             {
                 IntPtr editWnd = FindWindowEx(p.MainWindowHandle, IntPtr.Zero, "Edit", "");
-                notepadTextList.Add(editWnd.ToString());
+                notepadTextList.Add(GetText(editWnd));
             }
 
             return notepadTextList;
