@@ -11,10 +11,16 @@ namespace IfcExportTest
         {
             var GNC = new GetNotepadContent();
             var checkString = "Test";
+            bool checkBool = false;
             
             var resultText = GNC.GetNotePadContent_Contains(checkString);
 
-            Assert.AreEqual(checkString, resultText);
+            if (resultText.ToUpper().Contains(checkString.ToUpper()))
+            {
+                checkBool = true;
+            }
+
+            Assert.AreEqual(true, checkBool);
         }
     }
 }

@@ -40,7 +40,10 @@ namespace RevitIFcExport
             {
                 IntPtr editWnd = FindWindowEx(p.MainWindowHandle, IntPtr.Zero, "Edit", "");
                 notepadText =  GetText(editWnd);
-                if (notepadText.Contains(containsString))
+
+                var compareText = notepadText.ToUpper();
+
+                if (compareText.Contains(containsString.ToUpper()))
                 {
                     p.Kill();
                 }
